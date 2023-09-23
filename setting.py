@@ -4,28 +4,14 @@ import seaborn as sns
 df = sns.load_dataset("titanic")
 df.head()
 
-df[df["age"] > 50] ["age"].count()
-
-df.loc[df["age"] > 50 , ["class","age"]].head()
-
-df.loc[(df["age"] > 50) & (df["sex"] == "male") , ["class","age"]].head()
-
-df.loc[(df["age"] > 50)
-       & (df["sex"] == "male")
-       & (df["embark_town"] == "Southampton"), ["class","age","embark_town"]].head()
-
-
-
-
-
 df["age"].mean()
-df["age"].count()
-df["age"].min()
-df["age"]
 
+#Verinin kırılımını gerçekleştirdik cinsitetine göre yaş ve hayatta kalanların ortalamalarını alıyoruz.
 
-df.groupby("sex")["age"].mean()
+df.groupby("sex").agg({"age" : ["mean" ,"sum", ],
+                       "survived": "mean"})
 
-df.groupby("sex").agg({"age": "mean"})
+#Katagorik değişkenlere göre de kırılım yapabiliriz.
 
-df.groupby("sex").agg({"survived": "mean"})
+df.groupby(["sex","embark_town","class"]).agg({"age" : ["mean" ],
+                       "survived": "mean"})
