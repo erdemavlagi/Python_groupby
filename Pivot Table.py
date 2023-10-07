@@ -6,7 +6,7 @@ df.head()
 # Kod çıktısı ekranda tam görüntülenmesini istiyorsak
 #pd.set_option('display.width',500)
 
-###################################################
+#####################################################
 #Pivot tablo oluşturmak
 
 # pivot table birinci argümanı values argümanıdır kesişimde neyi görmek istiyorsak ilk onu yazarız ,
