@@ -58,4 +58,3 @@ cat_cols = [col for col in cat_cols if col not in cat_but_car] # işlemini yapar
 
 
 
-
