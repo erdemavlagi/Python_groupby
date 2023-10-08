@@ -55,6 +55,42 @@ cat_cols = cat_cols + num_but_cat # sinserellar ve katagorikler aynı yerdedir
 
 cat_cols = [col for col in cat_cols if col not in cat_but_car] # işlemini yaparak süzerdik
 
+# şeçimi yaptık
+# şimdi fonksiyon yazıcaz bu fonsksiyon kendisine gelenlerin value countunu alsın
+# ve yüzdelik oransal bilgisini versin
+
+df["survived"].value_counts()
+100 * df["survived"].value_counts() / len(df)
 
 
+
+def cat_summary(dataframe , col_name):
+    print(pd.DataFrame({col_name : dataframe[col_name].value_counts(),
+                        "Ratio" : 100 * dataframe[col_name].value_counts() / len(dataframe)}))
+    print("####################################################################")
+
+cat_summary(df,"sex")
+
+#Bütün değişkenlerde uygulayalım
+for col in cat_cols:
+    cat_summary(df,col)
+
+############################################################################
+
+# Grafik özelliğinide eklemek istersek
+
+def cat_summary(dataframe , col_name, plot=False):
+    print(pd.DataFrame({col_name : dataframe[col_name].value_counts(),
+                        "Ratio" : 100 * dataframe[col_name].value_counts() / len(dataframe)}))
+    print("####################################################################")
+
+    if plot:
+        sns.countplot(x = dataframe[col_name], data =dataframe)
+        plt.show(block=True)
+
+cat_summary(df,"sex",plot=True)
+
+# bütün katagorik değişkenleri grafik halinde getirir
+for col in cat_cols:
+    cat_summary(df,col,plot=True)
 
